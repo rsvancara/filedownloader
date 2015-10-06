@@ -4,6 +4,6 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=gmod_portal',
     'username' => 'portal',
-    'password' => 'portal327',
+    'password' => 'portalxxxx',
     'charset' => 'utf8',
 ];
