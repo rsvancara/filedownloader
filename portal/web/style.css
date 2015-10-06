@@ -1,0 +1,43 @@
+
+/** Header Style */
+.main-header {
+    background: #b67233;
+}
+
+.main-header {
+  height: auto;
+}
+
+.main-header .header-group {
+    padding: 2rem 0 1.1rem 1.3rem;
+}
+
+.main-header .header-group {
+    position: relative;
+    width: 396px;
+    bottom: 0;
+    padding-right: 0;
+}
+
+
+.main-header .header-group {
+    padding: 2rem 0 1.1rem 1.3rem;
+}
+
+main-header sup {
+    display: block;
+    color: #fff;
+    line-height: 1em;
+    vertical-align: baseline;
+    margin: 0;
+}
+
+.main-header sup {
+    display: block;
+    color: #fff;
+    line-height: 1em;
+    vertical-align: baseline;
+    margin: 0;
+}
+
+

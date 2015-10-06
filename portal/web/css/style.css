@@ -1,0 +1,33 @@
+
+/** Header Style */
+.main-header {
+    background-color: #b67233;
+}
+
+
+/**.main-header .header-group { 
+    padding: 2rem 0 1.1rem 1.3rem;
+}
+*/
+
+
+.spine-column {
+	min-height: 969px;
+	position: fixed;
+	top: 0px;
+}
+
+main section .content {
+	padding-left: 10px;
+}
+
+div.filename span{
+	font-weight: bold;
+}
+
+div.filedescription {
+	margin-bottom: 10px;
+}
+
+
+
