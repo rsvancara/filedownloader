@@ -93,9 +93,7 @@ class FileController extends Controller
             }
 
             $model->size_bytes = filesize($model->filepath);
-            
-            //$model->file_info = finfo_file($model->filepath);
-            
+             
             if($model->save())
             {
             

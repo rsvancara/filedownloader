@@ -53,7 +53,7 @@ class LoginForm extends Model
         $user = $this->getUser();
         if (!$user || !$user->password) {
             if (Yii::$app->getModule("user")->loginEmail && Yii::$app->getModule("user")->loginUsername) {
-                $attribute = "Email / Username";
+                $attribute = "Email";
             } else {
                 $attribute = Yii::$app->getModule("user")->loginEmail ? "Email" : "Username";
             }
@@ -141,7 +141,7 @@ class LoginForm extends Model
     {
         // calculate attribute label for "username"
         if (Yii::$app->getModule("user")->loginEmail && Yii::$app->getModule("user")->loginUsername) {
-            $attribute = "Email / Username";
+            $attribute = "Email";
         } else {
             $attribute = Yii::$app->getModule("user")->loginEmail ? "Email" : "Username";
         }

@@ -38,6 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'enableAjaxValidation' => true,
         ]); ?>
 
+        <?= $form->field($profile, 'full_name') ?>
+        
         <?php if (Yii::$app->getModule("user")->requireEmail): ?>
             <?= $form->field($user, 'email') ?>
         <?php endif; ?>

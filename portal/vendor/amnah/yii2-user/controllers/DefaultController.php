@@ -8,6 +8,7 @@ use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
+use app\models\AuthenticationLog;
 
 /**
  * Default controller for User module
@@ -74,8 +75,17 @@ class DefaultController extends Controller
         // load post data and login
         $model = Yii::$app->getModule("user")->model("LoginForm");
         if ($model->load(Yii::$app->request->post()) && $model->login(Yii::$app->getModule("user")->loginDuration)) {
+            $user = \Yii::$app->user->identity;
+            $a = new AuthenticationLog();
+            $a->user_id = $user->id;
+            $a->email = $user->email;
+            $a->user_name = $user->username;
+            $a->save();
+            
             return $this->goBack(Yii::$app->getModule("user")->loginRedirect);
         }
+        
+        
 
         // render
         return $this->render('login', [

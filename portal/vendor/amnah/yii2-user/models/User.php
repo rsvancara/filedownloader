@@ -19,6 +19,7 @@ use ReflectionClass;
  * @property string    $email
  * @property string    $new_email
  * @property string    $username
+ * @property string    $name
  * @property string    $password
  * @property string    $auth_key
  * @property string    $api_key
@@ -93,7 +94,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['email', 'username'], 'filter', 'filter' => 'trim'],
             [['email'], 'email'],
             [['username'], 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u', 'message' => Yii::t('user', '{attribute} can contain only letters, numbers, and "_"')],
-
+            //[['name'],'required'],
             // password rules
             [['newPassword'], 'string', 'min' => 3],
             [['newPassword'], 'filter', 'filter' => 'trim'],
@@ -156,6 +157,7 @@ class User extends ActiveRecord implements IdentityInterface
             'update_time' => Yii::t('user', 'Update Time'),
             'ban_time'    => Yii::t('user', 'Ban Time'),
             'ban_reason'  => Yii::t('user', 'Ban Reason'),
+            //'name'  => Yii::t('user', 'First and Last Name'),
 
             // virtual attributes set above
             'currentPassword' => Yii::t('user', 'Current Password'),

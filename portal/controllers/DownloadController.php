@@ -21,6 +21,10 @@ class DownloadController extends \yii\web\Controller
      */
     public function actionIndex()
     {
+        if(\Yii::$app->user->isGuest)
+        {
+            $this->redirect(['/site/index']);
+        }
         $user = \Yii::$app->user->identity;
         
         

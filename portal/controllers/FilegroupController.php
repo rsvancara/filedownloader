@@ -14,8 +14,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\HttpException;
 
-
-
 /**
  * FilegroupController implements the CRUD actions for FileGroup model.
  */
@@ -109,11 +107,6 @@ class FilegroupController extends Controller
         
         $model = $this->findModel($id);
         
-        if($model->group_name == 'public')
-        {
-            return $this->redirect(['index']);
-            
-        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -188,11 +181,11 @@ class FilegroupController extends Controller
         {
             $post = Yii::$app->request->post();
             
-            
+            FileFileGroup::deleteAll(['file_id'=>$id]);
             if(isset($post['Post']['permission']))
             {
 
-                FileFileGroup::deleteAll(['file_id'=>$id]);
+                
             
                 foreach($post['Post']['permission']  as $perm)
                 {
@@ -237,23 +230,27 @@ class FilegroupController extends Controller
         if(Yii::$app->request->post())
         {
             $post = Yii::$app->request->post();
-
+            
+            UserFileGroup::deleteAll(['file_group_id'=>$id]);
+            //var_dump($post['Post']['membership']);
+            //    exit;
             if(isset($post['Post']['membership']))
             {
 
-                UserFileGroup::deleteAll(['file_group_id'=>$id]);
-            
                 foreach($post['Post']['membership']  as $perm)
                 {
 
                     $ffg = new UserFileGroup();
                     $ffg->user_id = $perm;
                     $ffg->file_group_id = $id;
-                    $ffg->save();
+                    if($ffg->save())
+                    {
+                        //return $this->redirect(['membership','id'=>$id]);
+                    }
                 }
             }
            
-            return $this->redirect(['membership','id'=>$id]);
+            return $this->redirect(['view','id'=>$id]);
         } else {
             
             return $this->render('membership', [

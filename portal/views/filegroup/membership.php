@@ -37,8 +37,6 @@ $form = ActiveForm::begin([
                 break;
             }
         }
-        
-
     ?>
         <tr>
             <td>

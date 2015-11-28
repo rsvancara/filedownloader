@@ -144,9 +144,10 @@ echo Menu::widget([
         ['label' => 'Site Home', 'url' => ['/site/index']],
         ['label' => 'Download Files', 'url' => ['/download/index'], 'visible' => !Yii::$app->user->isGuest],
         ['label' => 'Request Access', 'url' => ['/request/index'], 'visible' => !Yii::$app->user->isGuest],
-        
+        ['label' => 'Manage Access Requests', 'url' => ['/request-manager/index'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->can("admin")],
         ['label' => 'Manage Users', 'url' => ['/user/admin'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->can("admin")],
         ['label' => 'Manage Groups', 'url' => ['/filegroup/index'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->can("admin")],
+		['label' => 'Manage Logs', 'url' => ['/log/index'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->can("admin")],
         ['label' => 'Manage Files', 'url' => ['/file/index'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->can("admin")],
 		['label' => 'Manage Profile', 'url' => ['/user/account'], 'visible' => !Yii::$app->user->isGuest],
 		['label' => 'Login', 'url' => ['/user/login'], 'visible' => Yii::$app->user->isGuest],
@@ -155,9 +156,7 @@ echo Menu::widget([
 		['label' => 'Contact Us', 'url' => ['/site/contact'], 'visible' => !Yii::$app->user->isGuest],
     ],
 ]);	
-	
-	
-	
+
 	?>
 
 	</nav>

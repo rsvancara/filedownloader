@@ -2,14 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\captcha\Captcha;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Request Access';
+$this->title = 'Request File Access';
 
 ?>
-<h1>Request Access</h1>
+<h1>Request File Access</h1>
 <div class="request">
 <table>
     <tr>
@@ -24,38 +25,46 @@ $form = ActiveForm::begin([
 ]);
 
 $i=0;
-
-foreach($files as $f)
+if($files !== NULL)
 {
-
-    $checked = "";
-    foreach($selected_file as $sf)
+    foreach($files as $f)
     {
-        if($sf == $f->id)
+    
+        $checked = "";
+        if($model->file !== NULL && sizeof($model->file) > 0)
         {
-            $checked = "checked";
-            break;
+        foreach($model->file as $sf)
+        {
+            if($sf == $f->id)
+            {
+                $checked = "checked";
+                break;
+            }
         }
+        }
+    ?>
+    <tr>
+        <td><input type="checkbox" name="RequestForm[file][<?= $i ?>]" value="<?= $f->id ?>"  <?= $checked ?>/></td>
+        <td><?= $f->filename ?></div>
+        <td class="filedescription"><?= $f->description ?></td>
+    </tr>
+    <?php
+        $i++;
     }
-
-?>
-<tr>
-    <td><input type="checkbox" name="Post[file][<?= $i ?>]" value="<?= $f->id ?>"  <?= $checked ?>/></td>
-    <td><?= $f->filename ?></div>
-    <td class="filedescription"><?= $f->description ?></td>
-</tr>
-<?php
-
-    $i++;
-
 }
-
 ?>
-
-
 </table>
 <div class="form-group">
-    <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
+    <?= $form->field($model, 'request')->textArea() ?>
+</div>
+<div class="form-group">
+    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+    ]) ?>
+</div>
+
+<div class="form-group">
+    <?= Html::submitButton('Submit Request', ['class' => 'btn btn-primary']) ?>
 </div>
 <?php ActiveForm::end(); ?>
 </div>
